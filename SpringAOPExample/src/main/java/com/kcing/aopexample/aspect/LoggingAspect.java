@@ -1,9 +1,11 @@
 package com.kcing.aopexample.aspect;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -27,7 +29,7 @@ public class LoggingAspect {
 	 @Before("circlePointCutsOnly()")
 	 public void secondAdvice(JoinPoint joinPoint) {
 	//	 System.out.println("JoinPoint:" + joinPoint.toString());
-		 System.out.println("JoinPoint:" + joinPoint.getTarget());
+		// System.out.println("JoinPoint:" + joinPoint.getTarget());
 	 }
 	 
 //	@Before("circleAsArgsMethod()")
@@ -39,11 +41,11 @@ public class LoggingAspect {
 	 // @AfterReturning(pointcut="args(name)",returning="returnString")
 	// @AfterThrowing("args(name)")
 	  @AfterThrowing(pointcut="args(name)",throwing="ex")
-	 public void printCircleArgs(String name,Object exception) {
+	 public void printCircleArgs(String name,Object ex) {
 //		  System.out.println("Method with circle arg is called:" + name);
 		  
 	//	System.out.println("Method with circle arg is called:" + name +": Return val:" + returnString);
-		  System.out.println("Method with circle arg is called:" + name +": Exception" + exception);
+		  System.out.println("Method with circle arg is called:" + name +": Exception" + ex);
 	 }
 	@Pointcut("execution(* get*())")
 	 public void allGetters() {}
@@ -62,5 +64,18 @@ public class LoggingAspect {
 //	 @Before("allGetters() && circlePointCutsOnly()")
 //		public void loggingAdvice() {
 //			System.out.println("Advice run. Draw method is called");
-//		}
+//	}
+	 @Around("allGetters()")
+	// public void aroundAdvice(ProceedingJoinPoint proceedingJoinPoint) {
+	 public Object aroundAdvice(ProceedingJoinPoint proceedingJoinPoint) {
+		Object returnValue = null;
+		 System.out.println("Around advice(Before)"); 
+		try {
+			returnValue= proceedingJoinPoint.proceed();
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		System.out.println("Around advice(After)"); 
+		return returnValue;
+	 }
 }
