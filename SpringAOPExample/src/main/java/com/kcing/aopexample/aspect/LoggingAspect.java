@@ -1,5 +1,6 @@
 package com.kcing.aopexample.aspect;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -19,13 +20,23 @@ public class LoggingAspect {
 	public void loggingAdvice() {
 		System.out.println("Advice run. Draw method is called");
 	}
-	 
-	 @Before("circlePointCutsOnly()")
-	 public void secondAdvice() {
-		 System.out.println("Second advice");
-	 }
 	 */
-	 @Pointcut("execution(* get*())")
+	 @Before("circlePointCutsOnly()")
+	 public void secondAdvice(JoinPoint joinPoint) {
+	//	 System.out.println("JoinPoint:" + joinPoint.toString());
+		 System.out.println("JoinPoint:" + joinPoint.getTarget());
+	 }
+	 
+//	@Before("circleAsArgsMethod()")
+//	 public void printCircleArgs() {
+//		System.out.println("Method with circle arg is called");
+//	}
+	 
+	 @Before("args(name)")
+	 public void printCircleArgs(String name) {
+		System.out.println("Method with circle arg is called:" + name);
+	 }
+	@Pointcut("execution(* get*())")
 	 public void allGetters() {}
 	 
 	 /*Include all methods from Circle class */
@@ -34,12 +45,13 @@ public class LoggingAspect {
 	 // @Pointcut("within(com.kcing.aopexample.model..*)") //RootPackage or subpackages (..)
 	 public void circlePointCutsOnly() {}
 	 
-	 @Pointcut("args(com.kcing.aopexample.model.Circle)")
+	// @Pointcut("args(com.kcing.aopexample.model.Circle)")
+	 @Pointcut("args(java.lang.String)") //args(String)
 	 public void circleAsArgsMethod(){}
 	 
 	 //Combining pointcuts
-	 @Before("allGetters() && circlePointCutsOnly()")
-		public void loggingAdvice() {
-			System.out.println("Advice run. Draw method is called");
-		}
+//	 @Before("allGetters() && circlePointCutsOnly()")
+//		public void loggingAdvice() {
+//			System.out.println("Advice run. Draw method is called");
+//		}
 }
