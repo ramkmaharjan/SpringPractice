@@ -1,6 +1,9 @@
 package com.kcing.aopexample.aspect;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -32,9 +35,15 @@ public class LoggingAspect {
 //		System.out.println("Method with circle arg is called");
 //	}
 	 
-	 @Before("args(name)")
-	 public void printCircleArgs(String name) {
-		System.out.println("Method with circle arg is called:" + name);
+	// @After("args(name)")
+	 // @AfterReturning(pointcut="args(name)",returning="returnString")
+	// @AfterThrowing("args(name)")
+	  @AfterThrowing(pointcut="args(name)",throwing="ex")
+	 public void printCircleArgs(String name,Object exception) {
+//		  System.out.println("Method with circle arg is called:" + name);
+		  
+	//	System.out.println("Method with circle arg is called:" + name +": Return val:" + returnString);
+		  System.out.println("Method with circle arg is called:" + name +": Exception" + exception);
 	 }
 	@Pointcut("execution(* get*())")
 	 public void allGetters() {}
