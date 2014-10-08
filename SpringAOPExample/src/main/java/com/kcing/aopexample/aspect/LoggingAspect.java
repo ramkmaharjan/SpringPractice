@@ -65,7 +65,7 @@ public class LoggingAspect {
 //		public void loggingAdvice() {
 //			System.out.println("Advice run. Draw method is called");
 //	}
-	 @Around("allGetters()")
+	 /* @Around("allGetters()")
 	// public void aroundAdvice(ProceedingJoinPoint proceedingJoinPoint) {
 	 public Object aroundAdvice(ProceedingJoinPoint proceedingJoinPoint) {
 		Object returnValue = null;
@@ -78,4 +78,20 @@ public class LoggingAspect {
 		System.out.println("Around advice(After)"); 
 		return returnValue;
 	 }
+	 */
+	 
+	 /* Custom annotation */
+	 @Around("@annotation(com.kcing.aopexample.aspect.Loggable)")
+		
+		 public Object customAnnotation(ProceedingJoinPoint proceedingJoinPoint) {
+			Object returnValue = null;
+			 System.out.println("Around advice(Before)"); 
+			try {
+				returnValue= proceedingJoinPoint.proceed();
+			} catch (Throwable e) {
+				e.printStackTrace();
+			}
+			System.out.println("Around advice(After)"); 
+			return returnValue;
+		 }
 }
