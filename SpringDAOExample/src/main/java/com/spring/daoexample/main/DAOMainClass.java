@@ -27,6 +27,9 @@ public class DAOMainClass {
 		for ( Circle c: dao.getAllCircles()) {
 			System.out.println(c.getId()+":"+c.getName());
 		}
+		//Insert process
+		Circle newCircle = new Circle(3,"3Circle");
+		dao.insertCircle(newCircle);
 	}
 
 }

@@ -117,6 +117,10 @@ public class SpringJDBCDaoImpl {
 		return circle;
 	}
 	
+	public void insertCircle(Circle circle) {
+		String sql = "INSERT into CIRCLE (ID,NAME) values(?,?)";
+		jdbcTemplate.update(sql, circle.getId(),circle.getName());
+	}
 	private static final class CircleMapper implements RowMapper<Circle> {
 
 		@Override
