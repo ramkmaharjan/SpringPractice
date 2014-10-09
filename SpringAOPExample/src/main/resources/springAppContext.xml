@@ -10,19 +10,33 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd"
 	xmlns:context="http://www.springframework.org/schema/context">
 
-<aop:aspectj-autoproxy/>	
-	
+	<aop:aspectj-autoproxy />
+
 	<bean name="triangle" class="com.kcing.aopexample.model.Triangle">
 		<property name="name" value="MyTriangle" />
 	</bean>
 
-<bean name="circle" class="com.kcing.aopexample.model.Circle">
+	<bean name="circle" class="com.kcing.aopexample.model.Circle">
 		<property name="name" value="MyCircle" />
 	</bean>
-	
-	<bean name="shapeService" class="com.kcing.aopexample.service.ShapeService" autowire="byName"/>
-	
-	<!--  For annotation based AspectJ Programming -->
-	
-	<bean class="com.kcing.aopexample.aspect.LoggingAspect"/>
+
+	<bean name="shapeService" class="com.kcing.aopexample.service.ShapeService"
+		autowire="byName" />
+
+	<!-- For annotation based AspectJ Programming -->
+
+	<!-- <bean class="com.kcing.aopexample.aspect.LoggingAspect"/> -->
+
+	<bean id="LoggingXMLConfigAspect" class="com.kcing.aopexample.aspect.LoggingFromXMLAspect" />
+
+	<aop:config>
+		<aop:aspect ref="LoggingXMLConfigAspect">
+			<aop:pointcut expression="execution(* com.kcing.aopexample.model.Circle.get*())" id="LogPointCut" />
+			<aop:around method="xmlAroundMethod" pointcut-ref="LogPointCut" />
+			
+			<aop:pointcut expression="execution(* com.kcing.aopexample.model.Circle.set*(..))" id="LogPointCut2" />
+			<aop:before method="xmlBeforeSetMethod"  pointcut-ref="LogPointCut2"/>
+			
+		</aop:aspect>
+	</aop:config>
 </beans>

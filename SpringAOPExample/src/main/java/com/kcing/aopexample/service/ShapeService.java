@@ -9,7 +9,7 @@ public class ShapeService {
 	private Circle circle;
 	private Triangle triangle;
 	
-	@Loggable
+	// @Loggable
 	public Circle getCircle() {
 		return circle;
 	}

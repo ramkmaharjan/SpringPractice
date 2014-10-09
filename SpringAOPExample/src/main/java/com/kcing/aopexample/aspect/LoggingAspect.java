@@ -10,7 +10,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
-@Aspect
+// @Aspect
 public class LoggingAspect {
 
 	// @Before("execution(public void draw())")
@@ -93,5 +93,5 @@ public class LoggingAspect {
 			}
 			System.out.println("Around advice(After)"); 
 			return returnValue;
-		 }
+	}
 }

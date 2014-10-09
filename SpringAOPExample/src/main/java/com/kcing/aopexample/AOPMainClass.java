@@ -15,7 +15,7 @@ public class AOPMainClass {
 		
 		ShapeService shapeService = context.getBean("shapeService",ShapeService.class);
 		
-//		shapeService.getCircle().setNameAndReturn("YouCircle");
+		shapeService.getCircle().setName("YouCircle");
 		System.out.println(shapeService.getCircle().getName());
 		// System.out.println(shapeService.getTriangle().getName());
 	
