@@ -17,6 +17,7 @@ public class DAOMainClass {
 		Circle circle  = dao.getCirlce(1);
 		System.out.println(circle.getName());
 
+		System.out.println(dao.getCircleCount());
 	}
 
 }
