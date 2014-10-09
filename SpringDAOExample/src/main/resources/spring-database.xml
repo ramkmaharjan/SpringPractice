@@ -10,9 +10,16 @@
         http://www.springframework.org/schema/aop/spring-aop.xsd"
 	xmlns:context="http://www.springframework.org/schema/context">
 
-<context:annotation-config/>
-
-<context:component-scan base-package="com.spring.daoexample.dao"/>
-	
-<import resource="spring-database.xml"/>	
+<!--  BasicDataSource Source supports Connection Pooling -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<!-- 	class="org.springframework.jdbc.datasource.DriverManagerDataSource">  //Doesn't support connection pooling -->
+		
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/springtest" />
+		<property name="username" value="root"/>
+		<property name="password" value="NepalKCC123"/>
+		
+		<property name ="initialSize" value="2"/>
+		<property name ="maxActive" value="5"/>
+	</bean>
 </beans>
