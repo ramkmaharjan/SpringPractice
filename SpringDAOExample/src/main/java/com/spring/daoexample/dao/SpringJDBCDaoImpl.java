@@ -11,6 +11,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import com.spring.daoexample.model.Circle;
@@ -18,11 +21,14 @@ import com.spring.daoexample.model.Circle;
 @Component
 public class SpringJDBCDaoImpl {
 
-	@Autowired
+	
 	private DataSource dataSource;
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+
+	private NamedParameterJdbcTemplate namedParamJdbcTemplate;
 
 	public Circle getCirlce2(int circleId) {
 		Circle result = null;
@@ -121,6 +127,14 @@ public class SpringJDBCDaoImpl {
 		String sql = "INSERT into CIRCLE (ID,NAME) values(?,?)";
 		jdbcTemplate.update(sql, circle.getId(),circle.getName());
 	}
+	
+
+	/*Example of Named Parameter */
+	public void insertCircleNamedParameter(Circle circle) {
+		String sql = "INSERT into CIRCLE (ID,NAME) values(:id,:name)";
+		SqlParameterSource namedParam = new MapSqlParameterSource("id",circle.getId()).addValue("name", circle.getName());
+		getNamedParamJdbcTemplate().update(sql, namedParam);
+	}
 	private static final class CircleMapper implements RowMapper<Circle> {
 
 		@Override
@@ -143,8 +157,11 @@ public class SpringJDBCDaoImpl {
 	/**
 	 * @param dataSource the dataSource to set
 	 */
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
+		// this.jdbcTemplate = new JdbcTemplate(dataSource);
+		 this.namedParamJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 
 	/**
@@ -159,6 +176,20 @@ public class SpringJDBCDaoImpl {
 	 */
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	/**
+	 * @return the namedParamJdbcTemplate
+	 */
+	public NamedParameterJdbcTemplate getNamedParamJdbcTemplate() {
+		return namedParamJdbcTemplate;
+	}
+
+	/**
+	 * @param namedParamJdbcTemplate the namedParamJdbcTemplate to set
+	 */
+	public void setNamedParamJdbcTemplate(NamedParameterJdbcTemplate namedParamJdbcTemplate) {
+		this.namedParamJdbcTemplate = namedParamJdbcTemplate;
 	}
 
 }

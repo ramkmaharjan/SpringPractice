@@ -14,7 +14,7 @@ public class DAOMainClass {
 		
 		SpringJDBCDaoImpl dao = ctx.getBean("springJDBCDaoImpl",SpringJDBCDaoImpl.class);
 		
-		Circle circle  = dao.getCirlce(1);
+	//	Circle circle  = dao.getCirlce(1);
 	//	System.out.println(circle.getName());
 
 	//	System.out.println(dao.getCircleCount());
@@ -28,8 +28,11 @@ public class DAOMainClass {
 			System.out.println(c.getId()+":"+c.getName());
 		}
 		//Insert process
-		Circle newCircle = new Circle(3,"3Circle");
-		dao.insertCircle(newCircle);
+//		Circle newCircle = new Circle(3,"3Circle");
+//		dao.insertCircle(newCircle);
+		
+		Circle newCircle = new Circle(4,"4Circle");
+		dao.insertCircleNamedParameter(newCircle);
 	}
 
 }
