@@ -28,5 +28,10 @@
 		 <property name="dataSource" ref="dataSource" /> 
 	</bean>
 	
+	<!-- Dao Support Class (SimpleJDBC ) -->
+	
+	<bean id="simpleJdbcDaoImpl" class="com.spring.daoexample.daosupport.SimpleJdbcDaoImpl">
+	<property name="dataSource" ref="dataSource" /> 
+	</bean>
 	
 </beans>

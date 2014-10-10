@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.spring.daoexample.model.Circle;
@@ -29,7 +30,8 @@ public class SpringJDBCDaoImpl {
 	
 
 	private NamedParameterJdbcTemplate namedParamJdbcTemplate;
-
+	
+	
 	public Circle getCirlce2(int circleId) {
 		Circle result = null;
 

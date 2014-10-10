@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.spring.daoexample.dao.SpringJDBCDaoImpl;
+import com.spring.daoexample.daosupport.SimpleJdbcDaoImpl;
 import com.spring.daoexample.model.Circle;
 
 public class DAOMainClass {
@@ -31,8 +32,14 @@ public class DAOMainClass {
 //		Circle newCircle = new Circle(3,"3Circle");
 //		dao.insertCircle(newCircle);
 		
-		Circle newCircle = new Circle(4,"4Circle");
-		dao.insertCircleNamedParameter(newCircle);
+//		Circle newCircle = new Circle(4,"4Circle");
+//		dao.insertCircleNamedParameter(newCircle);
+		
+		//Support Class
+		
+		SimpleJdbcDaoImpl daoNew = ctx.getBean("simpleJdbcDaoImpl",SimpleJdbcDaoImpl.class);
+		System.out.println("SimpleJDBC:" + daoNew.getCircleCount());
+		
 	}
 
 }
