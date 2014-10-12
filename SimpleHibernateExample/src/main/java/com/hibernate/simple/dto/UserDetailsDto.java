@@ -1,7 +1,8 @@
 package com.hibernate.simple.dto;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,6 +16,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity//(name="USER_TABLE")
 @Table(name="USER_TABLE")
@@ -51,7 +56,9 @@ public class UserDetailsDto {
 	//For saving colleciton
 	@ElementCollection
 	 @JoinTable(name="USER_ADDRESS",joinColumns=@JoinColumn(name="USER_ID"))//Give sub table name
-	private Set<Address> listOfAddress = new HashSet<Address>();
+	@GenericGenerator(name="hilo-gen",strategy="hilo")
+	@CollectionId(columns = { @Column(name="ADDRESS_ID") }, generator = "hilo-gen", type = @Type(type="long"))
+	private Collection<Address> listOfAddress = new ArrayList<Address>();
 	
 	@Lob
 	private String description;
@@ -93,10 +100,10 @@ public class UserDetailsDto {
 	public void setFound(int found) {
 		this.found = found;
 	}
-	public Set<Address> getListOfAddress() {
+	public Collection<Address> getListOfAddress() {
 		return listOfAddress;
 	}
-	public void setListOfAddress(Set<Address> listOfAddress) {
+	public void setListOfAddress(Collection<Address> listOfAddress) {
 		this.listOfAddress = listOfAddress;
 	}
 	
