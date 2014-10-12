@@ -1,13 +1,15 @@
 package com.hibernate.simple.dto;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,6 +29,7 @@ public class UserDetailsDto {
 	private String userName;
 	
 // 	private String address;
+	/*
 	@Embedded
 	@AttributeOverrides({
 		@AttributeOverride(name="streetName",column=@Column(name="HOME_STREET")),
@@ -43,7 +46,13 @@ public class UserDetailsDto {
 		@AttributeOverride(name="state",column=@Column(name="OFF_STATE"))
 		
 	})
-	private Address officeAddress;
+	*/
+//	private Address officeAddress;
+	//For saving colleciton
+	@ElementCollection
+	 @JoinTable(name="USER_ADDRESS",joinColumns=@JoinColumn(name="USER_ID"))//Give sub table name
+	private Set<Address> listOfAddress = new HashSet<Address>();
+	
 	@Lob
 	private String description;
 	
@@ -84,17 +93,12 @@ public class UserDetailsDto {
 	public void setFound(int found) {
 		this.found = found;
 	}
-	public Address getHomeAddress() {
-		return homeAddress;
+	public Set<Address> getListOfAddress() {
+		return listOfAddress;
 	}
-	public void setHomeAddress(Address homeAddress) {
-		this.homeAddress = homeAddress;
+	public void setListOfAddress(Set<Address> listOfAddress) {
+		this.listOfAddress = listOfAddress;
 	}
-	public Address getOfficeAddress() {
-		return officeAddress;
-	}
-	public void setOfficeAddress(Address officeAddress) {
-		this.officeAddress = officeAddress;
-	}
+	
 	
 }

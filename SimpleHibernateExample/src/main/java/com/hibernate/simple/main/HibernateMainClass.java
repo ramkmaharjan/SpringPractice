@@ -19,16 +19,19 @@ public class HibernateMainClass {
 		homeAdd.setState("Florida");
 		homeAdd.setZipCode("3334");
 		homeAdd.setStreetName("X");;
-		user.setHomeAddress(homeAdd);
+	//	user.setHomeAddress(homeAdd);
 		
 		Address offAdd = new Address();
 		offAdd.setState("Florida");
 		offAdd.setZipCode("3334");
 		offAdd.setStreetName("y");;
-		user.setOfficeAddress(offAdd);
+		//user.setOfficeAddress(offAdd);
 		
 		user.setDescription("Helloxyzloremepsum");
 		user.setJoinDate(new Date());
+		
+		user.getListOfAddress().add(homeAdd);
+		user.getListOfAddress().add(offAdd);
 		service.insertUser(user);
 		
 		
