@@ -24,6 +24,7 @@ public class HibernateMappingMain {
 		v2.setVehicleName("Landcruiser");
 		
 		user.getVehicleList().add(v);
+		user.getVehicleList().add(v2);
 		v.setUser(user);
 
 //		user.getVehicleList().add(v);
@@ -40,9 +41,11 @@ public class HibernateMappingMain {
 		Session session = sessionFactory.openSession();
 
 		session.beginTransaction();
-		session.save(v);
-		session.save(v2);
-		session.save(user);
+//		session.save(user);
+//		session.save(v);
+//		session.save(v2);
+		
+		session.persist(user);
 		session.getTransaction().commit();
 		session.close();
 		sessionFactory.close();

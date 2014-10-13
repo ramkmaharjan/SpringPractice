@@ -3,6 +3,7 @@ package com.hibernate.mapping.dto;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,8 @@ public class UserDetails {
 //	@JoinTable(name="USER_VEHICLE",joinColumns = @JoinColumn(name="USERID"),
 //				inverseJoinColumns=@JoinColumn(name="VEHICLE_ID"))
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",cascade=CascadeType.PERSIST)
+	
 	private Collection<Vehicle> vehicleList = new ArrayList<Vehicle>();
 //	@ManyToMany
 //	private Collection<Vehicle> vehicleList = new ArrayList<Vehicle>();
