@@ -31,6 +31,7 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="com.hibernate.simple.dto.UserDetailsDto"/>
+         <mapping class="com.hibernate.simple.dto.Vehicle"/>
 
     </session-factory>
 
