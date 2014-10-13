@@ -32,10 +32,10 @@ public class UserDetails {
 //	@JoinTable(name="USER_VEHICLE",joinColumns = @JoinColumn(name="USERID"),
 //				inverseJoinColumns=@JoinColumn(name="VEHICLE_ID"))
 	
-//	@OneToMany(mappedBy="user")
-	
-	@ManyToMany
+	@OneToMany(mappedBy="user")
 	private Collection<Vehicle> vehicleList = new ArrayList<Vehicle>();
+//	@ManyToMany
+//	private Collection<Vehicle> vehicleList = new ArrayList<Vehicle>();
 
 	public int getUserId() {
 		return userId;

@@ -23,12 +23,14 @@ public class HibernateMappingMain {
 		Vehicle v2 = new Vehicle();
 		v2.setVehicleName("Landcruiser");
 		
-
 		user.getVehicleList().add(v);
-		user.getVehicleList().add(v2);
-		
-		v.getUserList().add(user);
-		v2.getUserList().add(user);
+		v.setUser(user);
+
+//		user.getVehicleList().add(v);
+//		user.getVehicleList().add(v2);
+//		
+//		v.getUserList().add(user);
+//		v2.getUserList().add(user);
 		
 		// v.setUser(user);
 		
