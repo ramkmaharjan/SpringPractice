@@ -12,20 +12,35 @@ public class HibernateMappingMain {
 	public static void main(String[] args) {
 
 		UserDetails user = new UserDetails();
-		user.setUserName("First Name");
+		user.setUserName("Harry Name");
+		
+//		UserDetails user2 = new UserDetails();
+//		user2.setUserName("sally Name");
 		
 		Vehicle v = new Vehicle();
 		v.setVehicleName("BMX");
-		v.setUser(user);
 		
+		Vehicle v2 = new Vehicle();
+		v2.setVehicleName("Landcruiser");
+		
+
 		user.getVehicleList().add(v);
+		user.getVehicleList().add(v2);
+		
+		v.getUserList().add(user);
+		v2.getUserList().add(user);
+		
+		// v.setUser(user);
+		
+		
 		Configuration c = new Configuration().configure();
 		SessionFactory sessionFactory = c.buildSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		session.beginTransaction();
-		session.save(user);
 		session.save(v);
+		session.save(v2);
+		session.save(user);
 		session.getTransaction().commit();
 		session.close();
 		sessionFactory.close();
