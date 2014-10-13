@@ -16,8 +16,9 @@ public class HibernateMappingMain {
 		
 		Vehicle v = new Vehicle();
 		v.setVehicleName("BMX");
+		v.setUser(user);
 		
-		user.setVehicle(v);
+		user.getVehicleList().add(v);
 		Configuration c = new Configuration().configure();
 		SessionFactory sessionFactory = c.buildSessionFactory();
 		Session session = sessionFactory.openSession();
