@@ -8,9 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,9 +27,10 @@ public class UserDetails {
 	// @JoinColumn(name="VEHICLE_ID")
 	// private Vehicle vehicle;
 
-	@OneToMany
-	@JoinTable(name="USER_VEHICLE",joinColumns = @JoinColumn(name="USERID"),
-				inverseJoinColumns=@JoinColumn(name="VEHICLE_ID"))
+//	@OneToMany
+//	@JoinTable(name="USER_VEHICLE",joinColumns = @JoinColumn(name="USERID"),
+//				inverseJoinColumns=@JoinColumn(name="VEHICLE_ID"))
+	@OneToMany(mappedBy="user")
 	private Collection<Vehicle> vehicleList = new ArrayList<Vehicle>();
 
 	public int getUserId() {
