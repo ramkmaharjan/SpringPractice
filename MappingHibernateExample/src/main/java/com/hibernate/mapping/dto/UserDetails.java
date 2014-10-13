@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity//(name="USER_TABLE")
+@Entity
 @Table(name="USER_TABLE_MAP")
 public class UserDetails {
 
