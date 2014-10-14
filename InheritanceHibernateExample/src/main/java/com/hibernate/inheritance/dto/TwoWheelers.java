@@ -1,10 +1,8 @@
 package com.hibernate.inheritance.dto;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(value = "BIKE")
 public class TwoWheelers extends Vehicle {
 
 	private String steeringHandle;
