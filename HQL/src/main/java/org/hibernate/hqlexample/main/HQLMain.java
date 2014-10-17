@@ -6,6 +6,8 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.hqlexample.dto.UserDetails;
 
@@ -30,13 +32,17 @@ public class HQLMain {
 //		query.setInteger(0, 2);
 //		List<UserDetails> list = query.list();
 		
-		Criteria criteria = session.createCriteria(UserDetails.class);
+//		Criteria criteria = session.createCriteria(UserDetails.class);
 		//criteria.add(Restrictions.eq("userId", 2)).add(Restrictions.eq("userName","Ramesh"));
-		criteria.add(Restrictions.or(Restrictions.eq("userId", 2),Restrictions.eq("userId", 2)));
+		//criteria.add(Restrictions.or(Restrictions.eq("userId", 2),Restrictions.eq("userId", 2)));
 		
-		List<UserDetails> list = (List<UserDetails>)criteria.list();
-		for(UserDetails d : list) {
-			System.out.println(d.getUserName());
+		//Projection and query by example
+		Criteria criteria = session.createCriteria(UserDetails.class)
+				.setProjection(Projections.property("userName"));
+		//Selects username only
+		List<String> list = (List<String>)criteria.list();
+		for(String d : list) {
+			System.out.println(d);
 		}
 		session.getTransaction().commit();
 		session.close();
