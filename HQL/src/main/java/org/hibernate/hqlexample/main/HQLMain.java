@@ -31,7 +31,8 @@ public class HQLMain {
 //		List<UserDetails> list = query.list();
 		
 		Criteria criteria = session.createCriteria(UserDetails.class);
-		criteria.add(Restrictions.eq("userId", 2)).add(Restrictions.eq("userName","Ramesh"));
+		//criteria.add(Restrictions.eq("userId", 2)).add(Restrictions.eq("userName","Ramesh"));
+		criteria.add(Restrictions.or(Restrictions.eq("userId", 2),Restrictions.eq("userId", 2)));
 		
 		List<UserDetails> list = (List<UserDetails>)criteria.list();
 		for(UserDetails d : list) {
