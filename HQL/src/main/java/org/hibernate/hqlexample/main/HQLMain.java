@@ -2,10 +2,11 @@ package org.hibernate.hqlexample.main;
 
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.hqlexample.dto.UserDetails;
 
 public class HQLMain {
@@ -25,10 +26,14 @@ public class HQLMain {
 //		query.setMaxResults(5);
 //		query.setFirstResult(0);
 		
-		Query query = session.getNamedQuery("findUserDetails");
-		query.setInteger(0, 2);
-		List<UserDetails> list = query.list();
+//		Query query = session.getNamedQuery("findUserDetails");
+//		query.setInteger(0, 2);
+//		List<UserDetails> list = query.list();
 		
+		Criteria criteria = session.createCriteria(UserDetails.class);
+		criteria.add(Restrictions.eq("userId", 2)).add(Restrictions.eq("userName","Ramesh"));
+		
+		List<UserDetails> list = (List<UserDetails>)criteria.list();
 		for(UserDetails d : list) {
 			System.out.println(d.getUserName());
 		}
