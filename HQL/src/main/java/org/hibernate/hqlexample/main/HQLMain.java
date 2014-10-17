@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Example;
-import org.hibernate.criterion.Projections;
 import org.hibernate.hqlexample.dto.UserDetails;
 
 public class HQLMain {
@@ -41,16 +40,15 @@ public class HQLMain {
 		UserDetails exampleUser = new UserDetails();
 	//	exampleUser.setUserId(2); //Example doesn't consider Primary ID
 		exampleUser.setUserName("Ramesh");
-		Example userDetailsExample = Example.create(exampleUser);
+		Example userDetailsExample = Example.create(exampleUser).excludeProperty("userName");
 		
 		//Projection and query by example
 		Criteria criteria = session.createCriteria(UserDetails.class)
-				.setProjection(Projections.property("userName"))
-				.add(userDetailsExample);
+						.add(userDetailsExample);
 		//Selects username only
-		List<String> list = (List<String>)criteria.list();
-		for(String d : list) {
-			System.out.println(d);
+		List<UserDetails> list = (List<UserDetails>)criteria.list();
+		for(UserDetails d : list) {
+			System.out.println(d.getUserId());
 		}
 		session.getTransaction().commit();
 		session.close();
