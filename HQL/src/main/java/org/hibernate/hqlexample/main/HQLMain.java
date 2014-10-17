@@ -17,8 +17,8 @@ public class HQLMain {
 
 		session.beginTransaction();
 		
-		Query query = session.createQuery("from UserDetails");
-		
+		Query query = session.createQuery("from UserDetails where userId = ?");
+		query.setInteger(0, 2);
 		List<UserDetails> list = query.list();
 		
 		for(UserDetails d : list) {
