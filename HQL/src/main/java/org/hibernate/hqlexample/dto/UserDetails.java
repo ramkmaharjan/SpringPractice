@@ -4,11 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 // (name="USER_TABLE")
 @Table(name = "USER_TABLE")
+@NamedQuery(name="findUserDetails",query="from UserDetails where userId =?")
 public class UserDetails {
 
 	@Id

@@ -20,8 +20,13 @@ public class HQLMain {
 //		Query query = session.createQuery("from UserDetails where userId = ?");
 //		query.setInteger(0, 2);
 		
-		Query query = session.createQuery("from UserDetails where userId = :userID");
-		query.setInteger("userID", 2);
+//		Query query = session.createQuery("from UserDetails where userId = :userID");
+//		query.setInteger("userID", 2);
+//		query.setMaxResults(5);
+//		query.setFirstResult(0);
+		
+		Query query = session.getNamedQuery("findUserDetails");
+		query.setInteger(0, 2);
 		List<UserDetails> list = query.list();
 		
 		for(UserDetails d : list) {
