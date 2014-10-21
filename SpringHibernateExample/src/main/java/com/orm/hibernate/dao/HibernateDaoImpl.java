@@ -5,6 +5,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.orm.hibernate.model.Circle;
+
 @Repository
 public class HibernateDaoImpl  {
 
@@ -13,10 +15,24 @@ public class HibernateDaoImpl  {
 	
 	public int getCircleCount() {
 		int result = 0;
+		
+	
+		
 		String hql ="select count(c) from Circle c";
 		Query query = sessionFactory.openSession().createQuery(hql);
 		result = ((Long)query.uniqueResult()).intValue();
+		
+		
+		
 		return result;
+	}
+	
+	public void saveCircle() {
+		
+		Circle c = new Circle();
+		c.setId(6);
+		c.setName("Hello");
+		sessionFactory.openSession().save(c);
 	}
 
 	/**

@@ -14,7 +14,7 @@
 
 
 		<!-- Hibernate / JPA -->
-		<hibernate.version>4.2.1.Final</hibernate.version>
+		<hibernate.version>3.3.2.GA</hibernate.version>
 
 		<slf4j.version>1.7.5</slf4j.version>
 

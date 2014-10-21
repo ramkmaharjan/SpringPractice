@@ -20,14 +20,18 @@ public class HQLMain {
 	
 		//1st Search query
 		UserDetails user1 = (UserDetails) session.get(UserDetails.class,2);
-		
-		//2nd Search query
-		//This one is not called because of one level cache.
-		UserDetails user2 = (UserDetails) session.get(UserDetails.class,2);
-		user2.setUserName("Lali");
-		System.out.println(user2.getUserName());
 		session.getTransaction().commit();
 		session.close();
+		
+		//2nd Search query
+		Session session2 = sessionFactory.openSession();
+		session2.beginTransaction();
+		UserDetails user2 = (UserDetails) session2.get(UserDetails.class,2);
+		user2.setUserName("Lali");
+		System.out.println(user2.getUserName());
+		
+		session2.getTransaction().commit();
+		session2.close();
 		sessionFactory.close();
 	}
 }

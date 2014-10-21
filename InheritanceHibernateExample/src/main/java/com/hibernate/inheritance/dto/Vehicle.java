@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "VEHICLE_IN")
 @Inheritance(strategy = InheritanceType.JOINED)
+@org.hibernate.annotations.Entity(selectBeforeUpdate = true)
 public class Vehicle {
 
 	@Id

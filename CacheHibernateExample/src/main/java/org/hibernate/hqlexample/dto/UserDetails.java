@@ -7,9 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
 // (name="USER_TABLE")
 @Table(name = "USER_TABLE")
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
 @NamedQuery(name="findUserDetails",query="from UserDetails where userId =?")
 public class UserDetails {
 

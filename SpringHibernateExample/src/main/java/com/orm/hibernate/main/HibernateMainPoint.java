@@ -12,5 +12,7 @@ public class HibernateMainPoint {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("springAppContext.xml");
 		HibernateDaoImpl dao = ctx.getBean("hibernateDaoImpl",HibernateDaoImpl.class);
 		System.out.println(dao.getCircleCount()+": Using Hibernate");
+		
+		dao.saveCircle();
 	}
 }
