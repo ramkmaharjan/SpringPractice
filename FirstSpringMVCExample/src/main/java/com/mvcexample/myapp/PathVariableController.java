@@ -15,4 +15,11 @@ public class PathVariableController {
 		model.addAttribute("helloMsg","Hello"+name);
 		return "hello";
 	}
+	
+	@RequestMapping("/hello/{name}/{address}")
+	public String sayHelloNameAndAddress(@PathVariable("name") String name,@PathVariable("address") String address,Model model) {
+		
+		model.addAttribute("helloMsg","Hello:"+name+":Welcome from:"+address);
+		return "hello";
+	}
 }
