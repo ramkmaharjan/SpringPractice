@@ -11,5 +11,7 @@ Form Submit
 
 
 <p>${submitMsg}</p>
+<p> Student name: ${student1.studentName} </p>
+<p> Student add: ${student1.studentAddress } </p>
 </body>
 </html>
