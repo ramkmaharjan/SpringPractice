@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Size;
+
 public class Student {
 
 	private String studentName;
+	@Size(min=2,max=4, message ="Please Enter correct Address size between {min} and {max}")
 	private String studentAddress;
 	private Long phoneNumber;
 	private Date dateOfBirth;
