@@ -1,10 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
 	<title>Home</title>
 </head>
 <body>
+
+<form:errors path="student1.*"/>
+
 <form action="submitForm" method="post">
 <p>
 Student name : <input type="text" name="studentName"/>
