@@ -11,6 +11,8 @@ public class Student {
 	private Long phoneNumber;
 	private Date dateOfBirth;
 	private List<String> hobbies = new ArrayList<String>();
+	
+	private Address address;
 	public String getStudentName() {
 		return studentName;
 	}
@@ -40,6 +42,12 @@ public class Student {
 	}
 	public void setHobbies(List<String> hobbies) {
 		this.hobbies = hobbies;
+	}
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 }

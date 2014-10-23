@@ -31,6 +31,11 @@ Student Hobbies:
 <option value="Badminton">Badminton </option>
 </select>
 </p>
+
+<p> Address Information</p>
+<p> City <input type="text" name="address.city"/> </p>
+<p> Country <input type="text" name="address.country"/> </p>
+
 <input type="submit" value="Submit me"/>
 </form>
 </body>
